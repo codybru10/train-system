@@ -40,4 +40,24 @@ describe(City) do
     end
   end
 
+  describe('#update') do
+    it('lets you update lists in the database') do
+      city = City.new({:id => nil, :name => 'Portland'})
+      city.save()
+      city.update({:name => 'Chicago'})
+      expect(city.name()).to(eq('Chicago'))
+    end
+  end
+
+  describe('#delete') do
+    it('deletes record from the database') do
+      city = City.new({:id => nil, :name => 'Portland'})
+      city.save()
+      test_city2 = City.new({:id => nil, :name => 'Chicago'})
+      test_city2.save()
+      city.delete()
+      expect(City.all).to(eq([test_city2]))
+    end
+  end
+
 end
