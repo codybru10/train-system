@@ -49,4 +49,15 @@ describe(Train) do
     end
   end
 
+  describe('#delete') do
+    it('deletes record from the database') do
+      train = Train.new({:id => nil, :name => 'Max'})
+      train.save()
+      test_train2 = Train.new({:id => nil, :name => 'L'})
+      test_train2.save()
+      train.delete()
+      expect(Train.all).to(eq([test_train2]))
+    end
+  end
+
 end
