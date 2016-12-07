@@ -40,4 +40,24 @@ describe(StopName) do
     end
   end
 
+  describe('#update') do
+    it('lets you update lists in the database') do
+      stop_name = StopName.new({:id => nil, :name => 'Stark street'})
+      stop_name.save()
+      stop_name.update({:name => 'Alder street'})
+      expect(stop_name.name()).to(eq('Alder street'))
+    end
+  end
+
+  describe('#delete') do
+    it('deletes record from the database') do
+      stop_name = StopName.new({:id => nil, :name => 'Stark street'})
+      stop_name.save()
+      test_stop_name2 = StopName.new({:id => nil, :name => 'Alder street'})
+      test_stop_name2.save()
+      stop_name.delete()
+      expect(StopName.all).to(eq([test_stop_name2]))
+    end
+  end
+
 end

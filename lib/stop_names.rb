@@ -38,4 +38,13 @@ class StopName
     found_stop_name
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @id = self.id()
+    DB.exec("UPDATE stop_names SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM stop_names WHERE id = #{self.id}")
+  end
 end
