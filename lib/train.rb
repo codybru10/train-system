@@ -48,7 +48,7 @@ class Train
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM trains WHERE id = #{self.id}")
+    DB.exec("DELETE FROM trains WHERE id = #{self.id};")
   end
 
   define_method(:cities) do
@@ -56,7 +56,7 @@ class Train
     results = DB.exec("SELECT city_id FROM stops WHERE train_id = #{self.id};")
     results.each() do |result|
       city_id = result.fetch("city_id").to_i
-      city = DB.exec("SELECT * FROM cities WHERE id = #{city_id}")
+      city = DB.exec("SELECT * FROM cities WHERE id = #{city_id};")
       name = city.first().fetch("name")
       stops.push(City.new({:name => name, :id => city_id}))
     end

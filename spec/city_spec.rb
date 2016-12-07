@@ -47,7 +47,29 @@ describe(City) do
       city.update({:name => 'Chicago'})
       expect(city.name()).to(eq('Chicago'))
     end
+
+
+    it('lets you add train to city') do
+      city = City.new({:id => nil, :name => 'Portland'})
+      city.save
+      train = Train.new({:id => nil, :name => 'West Coast Rail'})
+      train.save()
+      city.update({:train_ids => [train.id]})
+      expect(city.trains()).to(eq([train]))
+
+    end
   end
+
+  describe("#trains") do
+     it("returns all of the actors in a particular movie") do
+       city = City.new({:id => nil, :name => 'Portland'})
+       city.save
+       train = Train.new({:id => nil, :name => 'West Coast Rail'})
+       train.save()
+       city.update({:train_ids => [train.id]})
+       expect(city.trains()).to(eq([train]))
+     end
+   end
 
   describe('#delete') do
     it('deletes record from the database') do
