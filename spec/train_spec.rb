@@ -40,4 +40,13 @@ describe(Train) do
     end
   end
 
+  describe('#update') do
+    it('lets you update lists in the database') do
+      train = Train.new({:id => nil, :name => 'Max'})
+      train.save()
+      train.update({:name => 'L'})
+      expect(train.name()).to(eq('L'))
+    end
+  end
+
 end
