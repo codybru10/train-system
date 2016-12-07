@@ -61,7 +61,7 @@ describe(City) do
   end
 
   describe("#trains") do
-     it("returns all of the actors in a particular movie") do
+     it("returns all of the trains in a particular city") do
        city = City.new({:id => nil, :name => 'Portland'})
        city.save
        train = Train.new({:id => nil, :name => 'West Coast Rail'})
