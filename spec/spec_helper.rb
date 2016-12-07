@@ -1,5 +1,6 @@
 require('train')
 require('city')
+require('stop_names')
 require('rspec')
 require('pg')
 
