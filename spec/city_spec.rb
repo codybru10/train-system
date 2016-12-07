@@ -41,7 +41,7 @@ describe(City) do
   end
 
   describe('#update') do
-    it('lets you update lists in the database') do
+    it('lets you update cities in the database') do
       city = City.new({:id => nil, :name => 'Portland'})
       city.save()
       city.update({:name => 'Chicago'})

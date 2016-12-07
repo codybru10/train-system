@@ -41,7 +41,7 @@ describe(StopName) do
   end
 
   describe('#update') do
-    it('lets you update lists in the database') do
+    it('lets you update stop names in the database') do
       stop_name = StopName.new({:id => nil, :name => 'Stark street'})
       stop_name.save()
       stop_name.update({:name => 'Alder street'})

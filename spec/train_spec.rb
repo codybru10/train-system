@@ -41,13 +41,37 @@ describe(Train) do
   end
 
   describe('#update') do
-    it('lets you update lists in the database') do
+    it('lets you update trains in the database') do
       train = Train.new({:id => nil, :name => 'Max'})
       train.save()
       train.update({:name => 'L'})
       expect(train.name()).to(eq('L'))
     end
+
+    it('lets you add city to train') do
+      train = Train.new({:id => nil, :name => 'West Coast Rail'})
+      train.save()
+      portland = City.new({:id => nil, :name => 'Portland'})
+      portland.save
+      seattle = City.new({:id => nil, :name => 'Seattle'})
+      seattle.save
+      train.update({:city_ids => [portland.id, seattle.id]})
+      expect(train.cities()).to(eq([portland, seattle]))
+    end
   end
+
+  describe("#cities") do
+     it("returns all of the actors in a particular movie") do
+       train = Train.new({:id => nil, :name => 'West Coast Rail'})
+       train.save()
+       portland = City.new({:id => nil, :name => 'Portland'})
+       portland.save
+       seattle = City.new({:id => nil, :name => 'Seattle'})
+       seattle.save
+       train.update({:city_ids => [portland.id, seattle.id]})
+       expect(train.cities()).to(eq([portland, seattle]))
+     end
+   end
 
   describe('#delete') do
     it('deletes record from the database') do
