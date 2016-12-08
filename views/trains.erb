@@ -1,0 +1,25 @@
+<h1>Train List</h1>
+
+<p>Add a train to the database</p>
+
+<form action="/trains" method="post">
+  <label for="name">Add Name of Train:</label>
+  <input type="text" name="name">
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if @trains.any?() %>
+  <p>Click on a train to see what cities it passes through.</p>
+
+  <ul>
+    <% @trains.each do |train| %>
+    <li><a href="/trains/<%= train.id() %>"><%= train.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no trains added yet.</p>
+<% end %>
+
+<a href="/cities">See all cities</a>
+<a href="/">Return to Main Page</a>  

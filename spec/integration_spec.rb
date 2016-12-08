@@ -1,3 +1,19 @@
-# 1) retrieve input from form that establishes values for city stopnames and train classes.
-# 2) retrieve value for stop time and pass class values through stops table as _id columns
-# 3) append each record of the stops table as a unique line on Train Systems page
+require('capybara/rspec')
+require('./app')
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
+
+describe('adding a new train', {:type => :feature}) do
+  it('allows user to see the train list') do
+    visit('/')
+    click_link('Add New Train')
+    expect(page).to have_content("Add a train to the database")
+  end
+
+  it('submits train to form') do
+    visit('/trains')
+    fill_in("name", :with => 'Max')
+    click_button('Submit')
+    expect(page).to have_content('Max')
+  end
+end
